@@ -16,12 +16,11 @@ def main():
         #print("Invalid input")
         #return
     
-    print(numberToBcd("25", 10))
+    #print(numberToBcd("30", "10"))
+    #print(bcdToNumber("00110000", "2"))
     #print(decimalToBase("25", "2"))
     #print(Bcd("26", startingBase = "10"))
     #print(decimalToBcd("25"))
-
-
     return
 
 
