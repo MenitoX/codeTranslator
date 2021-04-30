@@ -1,7 +1,7 @@
 from math import ceil
 from .models import *
 from .decimalBase import decimalToBase, baseToDecimal, checkBase
-__all__ = ['numberToBcd']
+__all__ = ['numberToBcd', 'bcdToNumber']
 
 
 def binaryToBcd(binary):  
@@ -41,6 +41,12 @@ def numberToBcd(number, base):
     return number
     
 
-def bcdToNumber(number, startingBase = None, endingBase = None):
-    return
+def bcdToNumber(number, base):
+    # Bases 2 or 10
+    if base != __BIN_BASE__:
+        number = str(decimalToBase(number, __BIN_BASE__))
+    while len(number)%4 != 0:
+        number = '0' + number
+    number = binaryToBcd(number)
+    return number
 
