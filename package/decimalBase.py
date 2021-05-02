@@ -36,29 +36,44 @@ def decimalToBase(number, base):
     retNumber = joinString(retList)
     return retNumber
 
-# Error check for decimal type only inputs
+# Error check for inputs
 def errorCheck(number, base, endingBase):
+    error = False
+
     if base != __DEC_BASE__:
         numberDecimal = baseToDecimal(number, base)
     else:
         numberDecimal = int(number)
     
-    baseInt = int(base)
-    endingBase = int(endingBase)
-    if baseInt < __MIN_BASE__ or baseInt > __MAX_BASE__:
-        error = True
-        print("Invalid starting Base")
-    elif endingBase < __MIN_BASE__ or endingBase > __MAX_BASE__:
-        error = True
-        print("Invalid ending Base")
-    elif checkBase(number, base):
+    if base.isdigit():
+        baseInt = int(base)
+        if baseInt < __MIN_BASE__ or baseInt > __MAX_BASE__:
+            error = True
+            print("Invalid numeric starting Base")
+    else:
+        if base not in codeArray:
+            error = True
+            print("Invalid base not a code")
+    
+    if endingBase.isdigit():
+        endingBase = int(endingBase)
+        if endingBase < __MIN_BASE__ or endingBase > __MAX_BASE__:
+            error = True
+            print("Invalid ending Base")
+    else:
+        if endingBase not in codeArray:
+            error = True
+            print("Invalid base not a code")
+    
+    if checkBase(number, base):
         error = True
         print("Number not in Base")
+    
     elif numberDecimal < __MIN_N__ or numberDecimal > __MAX_N__:
         error = True
         print("Too big!")
-    else:
-        error = False
+    
+    
     return error
 
 # Error check for decimal type only bases, receives int number and base, True if error in base
