@@ -1,4 +1,3 @@
-from math import ceil
 from .models import *
 from .decimalBase import decimalToBase, baseToDecimal, checkBase
 __all__ = ['numberToBcd', 'bcdToNumber', 'numberToGray', 'grayToNumber', 'numberToExcess', 'excessToNumber']
