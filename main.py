@@ -11,16 +11,23 @@ def main():
     # startingBase = data[1]
     # endingBase = data[2]
     
-    #decimalToBcd(number)
+    #print(bcdToNumber(str(numberToBcd("00010111", "2")), "2"))
+    
     #if errorCheck(number, startingBase, endingBase):
         #print("Invalid input")
         #return
     
-    #print(numberToBcd("30", "10"))
-    #print(bcdToNumber("00110000", "2"))
-    #print(decimalToBase("25", "2"))
-    #print(Bcd("26", startingBase = "10"))
-    #print(decimalToBcd("25"))
+    
+    print(numberToParity("11101111", "2"))
+    #print(johnsonToNumber(numberToJohnson("3", 10)))
+    #print(excessToNumber(numberToExcess("23", "10")))
+    #print(bcdToNumber("1010110"))
+    #print(grayToNumber("1100001010", "2"))
+    #print(numberToBcd("85", "10"))
+    #print(bcdToNumber("17"))
+    #print(baseToDecimal("10111", "2"))
+    #print(decimalToBase("23", "2"))
+
     return
 
 
