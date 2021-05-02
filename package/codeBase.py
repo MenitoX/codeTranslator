@@ -38,7 +38,10 @@ def numberToBcd(number, base):
            number[i] = '0' + number[i]
     
     number = "".join(number)
-    # SUPONGO HACER ESTO PQ SINO NO TIENE SENTIDO ESTA WEEAAAAA
+    
+    # dev testing return
+    # return number
+    
     return number
        
 def bcdToNumber(number):
