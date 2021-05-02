@@ -1,4 +1,4 @@
-from .models import responseChar, __START_POS__, __DEC_BASE__, __MIN_BASE__, __MAX_BASE__, __MIN_N__, __MAX_N__
+from .models import responseChar, __START_POS__, __DEC_BASE__, __BIN_BASE__, __MIN_BASE__, __MAX_BASE__, __MIN_N__, __MAX_N__, codeArray
 
 #Exports
 __all__ = ['joinString', 'baseToDecimal', 'decimalToBase', 'errorCheck', 'checkBase']
