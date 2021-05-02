@@ -24,15 +24,9 @@ def binaryToBcd(binary):
         
         decimalValue = str(baseToDecimal(binaryValue, __BIN_BASE__)) + decimalValue
         
-        minIndex -= 4
-        maxIndex -= 4
-        
+        maxIndex += 4
     return decimalValue
 
-# Esta wea de Bcd no puede estar peor explicada porque directamente no funciona
-# porque el ejemplo está mal por la cresta supuestamente es pasar de binario a dec y de ese
-# dec a BCD cada digito, pero el ejemplo hace algo nada que ver,  WNNN COMO NO PUEDEN DAR BIEN INSTRUCCIONES DE ALGO QUE YO MISMO
-# ENCONTRÉ EN 5 MINUTOS DE GOOGLEAR PO LOCO WTF SAQUENME DE LATINOAMERICA CTM
 def numberToBcd(number, base):
     if base != __DEC_BASE__:
         number = baseToDecimal(number, base)
@@ -55,10 +49,6 @@ def bcdToNumber(number):
     if checkBase(number, __BIN_BASE__):
         number = decimalToBase(number, __BIN_BASE__)
     
-def bcdToNumber(number, base):
-    # Bases 2 or 10
-    if base != __BIN_BASE__:
-        number = str(decimalToBase(number, __BIN_BASE__))
     while len(number)%4 != 0:
         number = '0' + number
     number = binaryToBcd(number)
