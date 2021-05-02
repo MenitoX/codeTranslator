@@ -29,8 +29,8 @@ def binaryToBcd(binary):
 def numberToBcd(number, base):
     if base != __DEC_BASE__:
         number = baseToDecimal(number, base)
-    number = list(str(number))
-    number = [str(decimalToBase(i , __BIN_BASE__)) for i in number]
+    number = list(number)
+    number = [decimalToBase(i , __BIN_BASE__) for i in number]
     
     # This block of code gives us the binary BCD 
     for i in range(len(number)):
@@ -42,6 +42,7 @@ def numberToBcd(number, base):
     # dev testing return
     # return number
     
+    number = baseToDecimal(number ,__BIN_BASE__)
     return number
        
 def bcdToNumber(number):
