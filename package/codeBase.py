@@ -51,7 +51,6 @@ def numberToBcd(number, base):
     return number
     #return baseToDecimal(number ,__BIN_BASE__)
     
-
 def bcdToNumber(number, base):
     # Bases 2 or 10
     if base != __BIN_BASE__:
