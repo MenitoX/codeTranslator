@@ -1,7 +1,7 @@
 from math import ceil
 from .models import *
 from .decimalBase import decimalToBase, baseToDecimal, checkBase
-__all__ = ['numberToBcd', 'bcdToNumber']
+__all__ = ['numberToBcd', 'bcdToNumber', 'numberToGray']
 
 
 def binaryToBcd(binary):  
@@ -61,3 +61,17 @@ def bcdToNumber(number, base):
     number = binaryToBcd(number)
     return number
 
+def numberToGray(number, base):
+    if base != __BIN_BASE__:
+        number = baseToDecimal(number, base)
+        number = decimalToBase(number, __BIN_BASE__)
+    number = list(number)
+    resList = list()
+    resList.append(number[__START_POS__])
+    for i in range(1, len(number)):
+        if int(number[i]) + int(number[i-1]) == 1:
+            resList.append("1")
+        else:
+            resList.append("0")
+    resList = "".join(resList)
+    return resList
