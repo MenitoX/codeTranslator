@@ -4,25 +4,26 @@ __all__ = ['numberToBcd', 'bcdToNumber', 'numberToGray', 'grayToNumber', 'number
 
 
 def binaryToBcd(binary):  
-    nibbles = ceil(len(binary)/4)
+    nibbles = int(len(binary)/4)
     
     decimalValue = ""
-    maxIndex = len(binary)
-    minIndex = maxIndex - 4
+    maxIndex = 3 + 1
+    minIndex = 0
     # Iteration for each 4 bit segment
     for i in range(nibbles):
         binaryValue = ""
 
         # Indexing error resolver
-        if minIndex < 0:
-            minIndex = 0
+        #if manIndex > 0:
+            #minIndex = 0
         
         # We get the nibble segment value
         for i in range(minIndex, maxIndex):
             binaryValue += binary[i]
         
-        decimalValue = str(baseToDecimal(binaryValue, __BIN_BASE__)) + decimalValue
+        decimalValue += baseToDecimal(binaryValue, __BIN_BASE__) 
         
+        minIndex += 4
         maxIndex += 4
     return decimalValue
 
