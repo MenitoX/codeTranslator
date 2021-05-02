@@ -1,7 +1,7 @@
 from math import ceil
 from .models import *
 from .decimalBase import decimalToBase, baseToDecimal, checkBase
-__all__ = ['numberToBcd', 'bcdToNumber', 'numberToGray', 'grayToNumber']
+__all__ = ['numberToBcd', 'bcdToNumber', 'numberToGray', 'grayToNumber', 'numberToExcess', 'excessToNumber']
 
 
 def binaryToBcd(binary):  
@@ -85,3 +85,28 @@ def grayToNumber(number, base):
             number[i] = "0"
     number = "".join(number)
     return number
+
+def numberToExcess(number, base):
+    if base != __DEC_BASE__:
+        number = baseToDecimal(number, base)
+    number = list(number)
+    number = [str(int(i)+3) for i in number]
+    number = "".join(number)
+    
+    # Retorno como base 2
+    #number = decimalToBase(number, __BIN_BASE__)
+    
+    # Retorno como BCD
+    number = numberToBcd(number, __DEC_BASE__)
+    number = decimalToBase(number, __BIN_BASE__)
+    return number
+
+def excessToNumber(number):
+    number = bcdToNumber(number)
+    number = [str(int(i)-3) for i in number]
+    number = "".join(number)
+    number = decimalToBase(number, __BIN_BASE__)
+    
+    # Retorna binario del numero original del BCD ( o sea pre-añadido el exceso )
+    return number
+
