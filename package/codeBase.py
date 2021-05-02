@@ -110,3 +110,5 @@ def excessToNumber(number):
     # Retorna binario del numero original del BCD ( o sea pre-añadido el exceso )
     return number
 
+
+codeFunctions = [["bcd" ,numberToBcd], ["gry", numberToGray],  ["ed3", numberToExcess]]
