@@ -49,7 +49,11 @@ def numberToBcd(number, base):
     number = "".join(number)
     # SUPONGO HACER ESTO PQ SINO NO TIENE SENTIDO ESTA WEEAAAAA
     return number
-    #return baseToDecimal(number ,__BIN_BASE__)
+       
+def bcdToNumber(number):
+    # Remember that checkbase returns true when there's an error
+    if checkBase(number, __BIN_BASE__):
+        number = decimalToBase(number, __BIN_BASE__)
     
 def bcdToNumber(number, base):
     # Bases 2 or 10
@@ -62,6 +66,7 @@ def bcdToNumber(number, base):
 
 def numberToGray(number, base):
     if base != __BIN_BASE__:
+        number = baseToDecimal(number, base)
         number = decimalToBase(number, __BIN_BASE__)
     number = list(number)
     resList = list()
@@ -74,8 +79,8 @@ def numberToGray(number, base):
     resList = "".join(resList)
     return resList
 
-def grayToNumber(number, base):
-    if base != __BIN_BASE__:
+def grayToNumber(number):
+    if checkBase(number, __BIN_BASE__):
         number = decimalToBase(number, __BIN_BASE__)
     number = list(number)
     for i in range(1, len(number)):
