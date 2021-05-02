@@ -33,11 +33,9 @@ def numberToBcd(number, base):
     number = [str(decimalToBase(i , __BIN_BASE__)) for i in number]
     
     # This block of code gives us the binary BCD 
-    
     for i in range(len(number)):
        while len(number[i]) < 4:
            number[i] = '0' + number[i]
-    
     
     number = "".join(number)
     # SUPONGO HACER ESTO PQ SINO NO TIENE SENTIDO ESTA WEEAAAAA
