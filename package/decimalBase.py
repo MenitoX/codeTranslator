@@ -76,13 +76,20 @@ def errorCheck(number, base, endingBase):
     
     return error
 
-# Error check for decimal type only bases, receives int number and base, True if error in base
+# Error check for bases, receives string number and base, True if error in base
 def checkBase(number, base):
-    compareList = list()
-    for i in range(int(base)):
-        compareList.append(responseChar[i])
-    numberList = list(number)
-    for i in numberList:
-        if i not in compareList:
-            return True
+    if base.isdigit():
+        compareList = list()
+        for i in range(int(base)):
+            compareList.append(responseChar[i])
+        numberList = list(number)
+        for i in numberList:
+            if i not in compareList:
+                return True
+    else:
+        if number[__START_POS__] == '0':
+            return checkBase(number, __BIN_BASE__)
+        else:
+            return checkBase(number, __DEC_BASE__)
     return False
+
