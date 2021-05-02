@@ -11,15 +11,18 @@ def joinString(numberList):
 
 # Convertion from 1-64 base to decimal, receives string number and original base
 def baseToDecimal(number, base):
-    numberList = list(number)
-    base = int(base)
-    digits = len(numberList) - 1
-    
-    returnNumber = 0
-    for i in numberList:
-        returnNumber += responseChar.index(i)* (base**digits)
-        digits -= 1
-    return returnNumber
+    if base.isdigit():
+        numberList = list(number)
+        base = int(base)
+        digits = len(numberList) - 1
+        
+        returnNumber = 0
+        for i in numberList:
+            returnNumber += responseChar.index(i)* (base**digits)
+            digits -= 1
+        return str(returnNumber)
+    else:
+        return
 
 # Convertion to decimal bases 1-64, receives string number and ending base
 def decimalToBase(number, base):
