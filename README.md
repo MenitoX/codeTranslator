@@ -22,6 +22,7 @@ Aclaraciones:
 
     - Pylint me señala muchos errores y warnings respecto a los imports, creo que es por un tema de que se deprecó el uso de __all__ en los exports. No debería afectar la ejecución en ningún caso, y si no utilizas pylint como verificador entonces puedes ignorar esta aclaración.
 
+    - Siguiendo con el problema de Pylint, advierto que puede dar comportamientos indeterminados el ejecutar el código desde VisualStudio Code con la extensión de Python desde la interfaz, por lo tanto, ejectuar el código desde la consola de preferencia llamando al interprete de Python.
 
 Repositorio por si acaso:
     https://github.com/MenitoX/codeTranslator
