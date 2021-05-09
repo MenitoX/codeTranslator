@@ -103,7 +103,10 @@ def checkBase(number, base):
                     return True
     else:
         # Codes
-        if checkBase(number, __BIN_BASE__):
+        if base == "par" or base == "pbt":
+            if checkBase(number, __BIN_BASE__) or len(number) != 1:
+                return True
+        elif checkBase(number, __BIN_BASE__):
             return True
     return False
 
