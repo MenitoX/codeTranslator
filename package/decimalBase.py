@@ -1,15 +1,17 @@
-from .models import responseChar, __START_POS__, __DEC_BASE__, __BIN_BASE__, __MIN_BASE__, __MAX_BASE__, __MIN_N__, __MAX_N__, codeArray
+from .models import responseChar, __START_POS__, __DEC_BASE__, __BIN_BASE__, __MIN_BASE__, __MAX_BASE__, __MIN_N__, __MAX_N__, codeArray, codeNamesArray
+import package.codeBase as CB
 
 #Exports
-__all__ = ['joinString', 'baseToDecimal', 'decimalToBase', 'errorCheck', 'checkBase']
+__all__ = ['baseToDecimal', 'decimalToBase', 'errorCheck', 'checkBase', 'resolveBases', 'parseOutput']
 
 # Convertion of int array to responseChar array values, receives int array
-def joinString(numberList):
+def joinString(numberList, base = None):
+    
     numberList = [responseChar[i] for i in numberList]
     numberList = "".join(numberList)
     return numberList
 
-# Convertion from 1-64 base to decimal, receives string number and original base
+# Convertion from 1-64/code base to decimal, receives string number and original base
 def baseToDecimal(number, base):
     if base.isdigit():
         numberList = list(number)
@@ -22,13 +24,22 @@ def baseToDecimal(number, base):
             digits -= 1
         return str(returnNumber)
     else:
-        return
-
+        for i,j in CB.codeFunctionsCtoN:
+            if base == i:
+                return j(number, __DEC_BASE__)
+        
 # Convertion to decimal bases 1-64, receives string number and ending base
 def decimalToBase(number, base):
     retList = list()
     number = int(number)
     base = int(base)
+    if base == 1:
+        return number * "1"
+    elif number == 0:
+        return "0"
+    elif number == "":
+        return ""
+
     while number != 0:
         remainder = number % base  
         number = int(number / base)    
@@ -41,7 +52,8 @@ def errorCheck(number, base, endingBase):
     error = False
 
     if base != __DEC_BASE__:
-        numberDecimal = baseToDecimal(number, base)
+        # Modificar para checkear codigos
+        numberDecimal = int(baseToDecimal(number, base))
     else:
         numberDecimal = int(number)
     
@@ -87,9 +99,40 @@ def checkBase(number, base):
             if i not in compareList:
                 return True
     else:
-        if number[__START_POS__] == '0':
-            return checkBase(number, __BIN_BASE__)
-        else:
-            return checkBase(number, __DEC_BASE__)
+        if checkBase(number, __BIN_BASE__):
+            return True
     return False
+
+def resolveBases(number, base, conversionBase):
+    # d d
+    # d c
+    # c d
+    # c c
+    if base.isdigit() and conversionBase.isdigit():
+        number = baseToDecimal(number, base)
+        number = decimalToBase(number, conversionBase)
+    elif base.isdigit() and not conversionBase.isdigit():
+        number = baseToDecimal(number, base)
+        number = decimalToBase(number, __BIN_BASE__)
+        for i,j in CB.codeFunctionsNtoC:
+            if i == conversionBase:
+                number = j(number)
+    elif not base.isdigit() and conversionBase.isdigit():
+        number = baseToDecimal(number, base)
+        number = decimalToBase(number, conversionBase)
+    else:
+        number = baseToDecimal(number, base)
+        number = decimalToBase(number, __BIN_BASE__)
+        for i,j in CB.codeFunctionsNtoC:
+            if i == conversionBase:
+                number = j(number)
+    return number
+
+def parseOutput(number, baseOutput):
+    if baseOutput in codeArray:
+        index = codeArray.index(baseOutput)
+        baseOutput = "Codigo " + codeNamesArray[index] + ": "
+    else:
+        baseOutput = "Base " + baseOutput + ": "
+    print(baseOutput, number)
 
