@@ -1,6 +1,5 @@
 from math import ceil
 from package.models import *
-#from package.decimalBase import decimalToBase, baseToDecimal, checkBase
 import package.decimalBase as DB
 
 __all__ = ['codeFunctionsCtoN', 'codeFunctionsNtoC']

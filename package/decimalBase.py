@@ -49,56 +49,60 @@ def decimalToBase(number, base):
 
 # Error check for inputs
 def errorCheck(number, base, endingBase):
-    error = False
-
+    numberDecimal = 1
     if base != __DEC_BASE__:
-        # Modificar para checkear codigos
-        numberDecimal = int(baseToDecimal(number, base))
+        if base.isdigit() or base in codeArray:
+            numberDecimal = int(baseToDecimal(number, base))
     else:
         numberDecimal = int(number)
     
     if base.isdigit():
         baseInt = int(base)
         if baseInt < __MIN_BASE__ or baseInt > __MAX_BASE__:
-            error = True
-            print("Invalid numeric starting Base")
+            return True
+            #print("Invalid numeric starting Base")
     else:
         if base not in codeArray:
-            error = True
-            print("Invalid base not a code")
+            return True
+            #print("Invalid base not a code")
     
     if endingBase.isdigit():
         endingBase = int(endingBase)
         if endingBase < __MIN_BASE__ or endingBase > __MAX_BASE__:
-            error = True
-            print("Invalid ending Base")
+            return True
+            #print("Invalid ending Base")
     else:
         if endingBase not in codeArray:
-            error = True
-            print("Invalid base not a code")
+            return True
+            #print("Invalid base not a code")
     
     if checkBase(number, base):
-        error = True
-        print("Number not in Base")
+        return True
+        #print("Number not in Base")
     
     elif numberDecimal < __MIN_N__ or numberDecimal > __MAX_N__:
-        error = True
-        print("Too big!")
-    
-    
-    return error
+        return True
+        #print("Too big!")
 
 # Error check for bases, receives string number and base, True if error in base
 def checkBase(number, base):
     if base.isdigit():
-        compareList = list()
-        for i in range(int(base)):
-            compareList.append(responseChar[i])
-        numberList = list(number)
-        for i in numberList:
-            if i not in compareList:
-                return True
+        # Hardcoded unitarian base
+        if base == str(__MIN_BASE__):
+            for i in number:
+                if i != str(__MIN_BASE__):
+                    return True
+        # 2-64 bases
+        else:
+            compareList = list()
+            for i in range(int(base)):
+                compareList.append(responseChar[i])
+            numberList = list(number)
+            for i in numberList:
+                if i not in compareList:
+                    return True
     else:
+        # Codes
         if checkBase(number, __BIN_BASE__):
             return True
     return False
