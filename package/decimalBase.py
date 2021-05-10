@@ -55,7 +55,6 @@ def errorCheck(number, base, endingBase):
             numberDecimal = int(baseToDecimal(number, base))
     else:
         numberDecimal = int(number)
-    
     if base.isdigit():
         baseInt = int(base)
         if baseInt < __MIN_BASE__ or baseInt > __MAX_BASE__:
