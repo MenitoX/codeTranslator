@@ -8,6 +8,8 @@ Aclaraciones:
     
     - Los códigos gray transforman de indices binarios a el numero decimal que estos    deberian representar, y de este número a cualquier base que se necesite. No sigue el ejemplo de la tarea, porque a mi parecer, está erróneamente explicado.
 
+    - Se tomarán como válidos los BCD que en sus 4 bit más significativos tengan 0000.
+
     - Si bien la tarea pide un solo archivo .py con el código fuente, me parece que por el bien del orden y de las buenas prácticas, es necesario modularizar, espero se tenga en cuenta esto y no se me aplique un descuento. 
 
     - El código se divide un una función main y un paquete, donde están definidas funciones en los archivos codeBase.py y decimalBase.py, y modelos de algunas variables en models.py . 
